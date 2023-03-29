@@ -97,7 +97,7 @@ TipoResgate:
 
 - Define os valores possíveis para o atributo tipoResgate da classe LancamentoExtratoResgate.
 
-##Conclusão
+## Conclusão
 
 Além disso, o projeto também conta com duas classes filhas de LancamentoExtrato: LancamentoExtratoPontuacao e LancamentoExtratoResgate. A primeira representa um lançamento de pontos no extrato do cartão de fidelidade e a segunda representa um resgate de pontos. Ambas herdam os atributos e métodos da classe pai.
 
