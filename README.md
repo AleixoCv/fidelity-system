@@ -3,9 +3,9 @@ Documentação do Projeto Sistema de Fidelidade
 
 Este projeto é uma aplicação Java que modela algumas entidades de um sistema de fidelidade, como Endereço, Cartão de Fidelidade, Cliente e Lançamento de Extrato. Através da definição de classes, atributos e métodos, o sistema permite a manipulação dessas entidades de forma organizada e consistente.
 
-##Classes e seus Atributos
+## Classes e seus Atributos
 
-###Endereco:
+### Endereco:
 
 - logradouro: String
 - numero: int
@@ -15,13 +15,13 @@ Este projeto é uma aplicação Java que modela algumas entidades de um sistema 
 - estado: String
 - pais: String
 
-###CartaoFidelidade:
+### CartaoFidelidade:
 
 - numero: long
 - saldo: double
 - dataHoraAtualizacao: java.util.Date
 
-###Cliente:
+### Cliente:
 
 - cpf: String
 - nomeCompleto: String
@@ -30,22 +30,22 @@ Este projeto é uma aplicação Java que modela algumas entidades de um sistema 
 - renda: double
 - endereco: br.gov.cesarschool.poo.fidelidade.geral.negocio.Endereco
 
-###LancamentoExtrato:
+### LancamentoExtrato:
 
 - numeroCartao: long
 - quantidadePontos: int
 - dataHoraLancamento: java.util.DateTime
 
-###LancamentoExtratoPontuacao:
+### LancamentoExtratoPontuacao:
 
 - Herda os atributos de LancamentoExtrato.
 
-###LancamentoExtratoResgate:
+### LancamentoExtratoResgate:
 
 -Herda os atributos de LancamentoExtrato.
 -tipoResgate: br.gov.cesarschool.poo.fidelidade.cartao.negocio.TipoResgate
 
-###Enums:
+### Enums:
 
 - Sexo:
 - codigo: int
@@ -56,36 +56,37 @@ Este projeto é uma aplicação Java que modela algumas entidades de um sistema 
 - descricao: String
 - valores possíveis: produto, serviço e viagem
 
-##Funcionalidades
+## Funcionalidades
 
-###Endereco:
+### Endereco:
 
 - Construtor Endereco: inicializa todos os atributos da classe.
 - Métodos set e get públicos para todos os atributos.
 
-###CartaoFidelidade:
+### CartaoFidelidade:
 
 - Construtor CartaoFidelidade: inicializa o número do cartão.
 - Métodos get públicos para todos os atributos.
 - Método creditar: adiciona ao saldo atual o valor passado como parâmetro e atualiza a dataHoraAtualizacao com a data atual.
 - Método debitar: subtrai do saldo atual o valor passado como parâmetro e atualiza a dataHoraAtualizacao com a data atual.
 
-###Cliente:
+### Cliente:
 
 - Construtor Cliente: inicializa todos os atributos da classe.
 - Métodos get públicos para todos os atributos.
 - Métodos set públicos para todos os atributos, exceto CPF, que é imutável.
 - Método obterIdade: calcula e retorna a idade do cliente em função da data atual e da data de nascimento do cliente.
 
-###LancamentoExtrato:
+### LancamentoExtrato:
 
 - Construtor LancamentoExtrato: inicializa todos os atributos da classe.
 - Métodos get públicos para todos os atributos.
 
-###LancamentoExtratoPontuacao:
+### LancamentoExtratoPontuacao:
 
 - Herda os métodos e atributos de LancamentoExtrato.
-LancamentoExtratoResgate:
+
+### LancamentoExtratoResgate:
 
 - Herda os métodos e atributos de LancamentoExtrato.
 - Método get público para tipoResgate.
