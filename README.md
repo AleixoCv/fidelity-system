@@ -96,3 +96,11 @@ Sexo:
 TipoResgate:
 
 - Define os valores possíveis para o atributo tipoResgate da classe LancamentoExtratoResgate.
+
+##Conclusão
+
+Além disso, o projeto também conta com duas classes filhas de LancamentoExtrato: LancamentoExtratoPontuacao e LancamentoExtratoResgate. A primeira representa um lançamento de pontos no extrato do cartão de fidelidade e a segunda representa um resgate de pontos. Ambas herdam os atributos e métodos da classe pai.
+
+Por fim, o projeto conta com uma enumeração chamada TipoResgate, que possui três valores possíveis: produto, serviço e viagem.
+
+No geral, o objetivo do projeto é representar um sistema de fidelidade, permitindo a criação de cartões de fidelidade para clientes, bem como o registro de pontos e resgates de pontos em seus respectivos extratos. Além disso, o projeto também possui classes para representar o endereço dos clientes e seu sexo.
