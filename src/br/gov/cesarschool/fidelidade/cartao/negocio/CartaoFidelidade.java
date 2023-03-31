@@ -1,5 +1,3 @@
-package br.gov.cesarschool.poo.fidelidade.cartao.negocio;
-
 import java.util.Date;
 
 public class CartaoFidelidade {

@@ -2,7 +2,8 @@ package br.gov.cesarschool.poo.fidelidade.geral.negocio;
 
 public enum Sexo {
 
-    FEMININO(1, "Feminino"), MASCULINO(2, "Masculino");
+    FEMININO(1, "Feminino"), 
+    MASCULINO(2, "Masculino");
 
     private int codigo;
     private String descricao;
