@@ -10,6 +10,10 @@ public class Cliente {
     private double renda;
     private Endereco endereco;
    
+    /* Alterei para Getters e Setters individuais
+     * Manter os metodos desta forma ajuda a fazer alterações na classe no futuro
+     * Já que pode existir a necessidade de alterar apenas um único elemento, ou alterar alguns, porém nao todos
+     * E no caso de ser necessario alterar todos os valores teremos um metodo para cada elemento que pode ser utilizado*/
     
     public String getNomeCompleto() {
 		return nomeCompleto;
