@@ -1,10 +1,10 @@
-import java.util.DateTime
+import java.time.LocalDateTime;
 public class LancamentoExtrato{
     private long numeroCartao;
     private int quantidadePontos;
-    private DateTime dataHoraLancamento;
+    private long dataHoraLancamento = LocalDateTime.now();
 
-    public LancamentoExtrato(long numeroCartao, int quantidadePontos, DateTime dataHoraLancamento){
+    public LancamentoExtrato(long numeroCartao, int quantidadePontos, long dataHoraLancamento){
         this.numeroCartao = numeroCartao;
         this.quantidadePontos = quantidadePontos;
         this.dataHoraLancamento = dataHoraLancamento;
@@ -17,7 +17,8 @@ public class LancamentoExtrato{
         return quantidadePontos;
     }
     public long getDataHoraLancamento(){
-        return dataHoraLancamento.Now(); //aqui eu estou em dúvida de now ou date
+        dataHoraLancamento - LocalDateTime.now();
+        return dataHoraLancamento.now(); //aqui eu estou em dúvida de now ou date
     }
 
 }
