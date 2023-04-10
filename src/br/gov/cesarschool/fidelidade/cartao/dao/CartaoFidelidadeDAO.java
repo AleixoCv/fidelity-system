@@ -1,4 +1,4 @@
-public class CartaoFIdelidadeDAO extends CartaoFidelidade{
+public class CartaoFidelidadeDAO extends CartaoFidelidade{
 
     public boolean incluir(CartaoFidelidade cartao){
         return false;

@@ -5,10 +5,10 @@ public class CartaoFidelidadeMediator {
     private CartaoFidelidadeDAO repositorioCartao;
     private LancamentoExtratoDAO repositorioLancamento;
     private static CartaoFidelidadeMediator instance;
-    private CartaoFidelidadeMediator(){
-
+    public CartaoFidelidadeMediator(){
+        this.repositorioCartao = new cartaoFidelidadeDAO();
+        this.repositorioLancamento = new LancamentoExtratoDAO();
     }
-
     public static CartaoFidelidadeMediator getInstance(){
         if (instance == null){
             instance = new CartaoFidelidadeMediator();
@@ -16,8 +16,6 @@ public class CartaoFidelidadeMediator {
         return instance;
     }
 
-    this.repositorioCartao = new ClienteDAO();
-    this.repositorioLancamento = new LancamentoExtratoDAO();
 
     public long gerarCartao(Cliente cliente){
         Date dataAtual = new Date();
@@ -38,7 +36,25 @@ public class CartaoFidelidadeMediator {
         } else {
             return "Cartão não encontrado!";
         }
+        creditar(quantidadePontos);
+        alterar(numeroCartao);
+        incluir(quantidadePontos);
 
+        return null;        
+    }
+    public String resgatar(long numeroCartao , double quantidadePontos, TipoResgate tipo){
+        if (quantidadePontos <= 0){
+            return "Quantidade de pontos invalida";
+        }
+        if (repositorioCartao.buscar(numeroCartao)){
+            CartaoFidelidade cartao = repositorioCartao.buscar(numeroCartao);
+        } else {
+            return "Cartão não encontrado!";
+        }
+        debitar(quantidadePontos);
+        alterar(numeroCartao);
+        incluir(quantidadePontos);
         
+        return null;        
     }
 }
