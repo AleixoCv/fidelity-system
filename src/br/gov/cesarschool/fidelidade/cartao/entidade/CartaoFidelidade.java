@@ -6,7 +6,6 @@ public class CartaoFidelidade {
     private double saldo;
     private Date dataHoraAtualizacao;
 
-
 	public cartaoFidelidade(long numero) {
         this.numero = numero;
 		this.dataHoraAtualizacao = new Date();
