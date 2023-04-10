@@ -6,39 +6,32 @@ public class CartaoFidelidade {
     private double saldo;
     private Date dataHoraAtualizacao;
 
-    public void creditar(double valor) {
-        setSaldo(getSaldo() + valor); 
-        setDataHoraAtualizacao(new Date());;
+
+	public cartaoFidelidade(long numero) {
+        this.numero = numero;
+		this.dataHoraAtualizacao = new Date();
+    }
+
+	public void creditar(double valor) {
+        this.saldo += valor;
+        this.dataHoraAtualizacao = new Date();
     }
 
     public void debitar(double valor) {
-        setSaldo(getSaldo() - valor);
-        setDataHoraAtualizacao(new Date());;
+        this.saldo -= valor;
+        this.dataHoraAtualizacao = new Date();
     }
 
 	public long getNumero() {
 		return numero;
 	}
 
-	public void setNumero(long numero) {
-		this.numero = numero;
-	}
-
 	public double getSaldo() {
 		return saldo;
-	}
-
-	public void setSaldo(double saldo) {
-		this.saldo = saldo;
 	}
 
 	public Date getDataHoraAtualizacao() {
 		return dataHoraAtualizacao;
 	}
-
-	public void setDataHoraAtualizacao(Date dataHoraAtualizacao) {
-		this.dataHoraAtualizacao = dataHoraAtualizacao;
-	}
-
     
 }

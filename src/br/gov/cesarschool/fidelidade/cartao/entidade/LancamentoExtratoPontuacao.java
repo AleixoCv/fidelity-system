@@ -1,7 +1,7 @@
-import java.util.DateTime;
+import java.util.Date;
 
 public class LancamentoExtratoPontuacao extends LancamentoExtrato {
-    public LancamentoExtratoPontuacao(long numeroCartao, int quantidadePontos, LocalDateTime dataHoraLancamento) {
-        super(numeroCartao, quantidadePontos, dataHoraLancamento);
-    }
+
+	
+	
 }
