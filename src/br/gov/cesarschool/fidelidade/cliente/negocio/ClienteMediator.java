@@ -1,45 +1,102 @@
-import br.gov.cesarschool.poo.fidelidade.cliente.DAO.ClienteDAO;
-import br.gov.cesarschool.poo.fidelidade.cartao.negocio.CartaoFidelidadeMediator;
-public class ClienteMediator{
-    private ClienteDAO repositorioCliente;
-    private CartaoFidelidadeMediator cartaoMediator;
-    public ClienteMediator(){
-        this.repositorioCliente = new ClienteDAO();
-        this.cartaoMediator = new CartaoFidelidadeMediator();
+package br.gov.cesarschool.fidelidade.cliente.negocio;
+
+import br.gov.cesarschool.fidelidade.cliente.DAO.ClienteDAO;
+import br.gov.cesarschool.fidelidade.cliente.entidade.Cliente;
+import br.gov.cesarschool.fidelidade.util.*;
+import br.gov.cesarschool.fidelidade.cartao.negocio.CartaoFidelidadeMediator;
+
+public class ClienteMediator {
+	
+	private static ClienteMediator instance;
+	private ClienteDAO repositorioCliente;
+	private CartaoFidelidadeMediator cartaoMediator;
+	
+	private ClienteMediator() {
+		repositorioCliente = new ClienteDAO();
+		cartaoMediator = CartaoFidelidadeMediator.getInstance();
+	}
+	
+	public static ClienteMediator getInstance() {
+        if (instance == null) {
+            instance = new ClienteMediator(); 
+        }
+        return instance;
+    }
+	public ResultadoInclusaoCliente incluir(Cliente cliente) {
+		String msgErro = validar(cliente); 
+		long numeroCartao = 0;
+        if (msgErro == null){
+            boolean res = repositorioCliente.incluir(cliente);
+            if (res) {
+            	numeroCartao = cartaoMediator.gerarCartao(cliente);
+            } else {
+            	msgErro = "Erro ao incluir cliente no reposit�rio";
+            }
+        } 
+        return new ResultadoInclusaoCliente(numeroCartao, msgErro);
     }
 
-    public ResultadoInclusaoCliente incluir(Cliente cliente){
-        // Métodos:
-        // • public ResultadoInclusaoCliente incluir(Cliente cliente): deve validar os dados do
-        // cliente recebidos no objeto. Se os dados estiverem válidos, deve incluir o cliente no
-        // repositorioCliente, gerar cartão fidelidade através do cartaoMediator, e retornar um
-        // objeto do tipo ResultadoInclusaoCliente com número do cartão fidelidade gerado e
-        // mensagem de erro nula. Se algum dado estiver inválido, deve retornar um objeto do
-        // tipo ResultadoInclusaoCliente com número do cartão fidelidade zero e mensagem
-        // informando o que não foi validado.
-        // • public String alterar(Cliente cliente): deve validar os dados do cliente recebidos no
-        // objeto. Não é permitido alterar o cpf do cliente. Se os dados estiverem válidos, deve
-        // alterar o cliente no repositorioCliente e retornar null. Se algum dado estiver inválido,
-        // deve retornar mensagem informando o que não foi validado.
-        // • private String validar(Cliente cliente): deve realizar a validação dos dados do cliente,
-        // retornando null se os dados estiverem válidos, e uma mensagem pertinente caso
-        // algum dado seja inválido. Este método deve ser utilizado pelos métodos incluir e
-        // alterar. As regras de validação são:
-        // o cpf: é obrigatório e deve ser um cpf válido. Usar a classe ValidadorCPF
-        // implementada.
-        // o nomeCompleto: é obrigatório. Usar a classe StringUtil implementada.
-        // o sexo: é obrigatório.
-        // o dataNascimento: é obrigatório e deve ser maior do que a data atual menos
-        // 17 anos. Em outras palavras, a idade do cliente deve ser maior ou igual a 18.
-        // o renda: deve ser maior ou igual a zero.
-        // o endereco: é obrigatório, e deve ter as seguintes validações para os campos
-        // específicos da classe Endereco:
-
-        // ▪ logradouro: é obrigatório (usar a classe StringUtil implementada) e
-        // deve ter pelo menos 4 caracteres.
-        // ▪ numero: deve ser maior ou igual a zero.
-        // ▪ cidade: é obrigatório. Usar a classe StringUtil implementada.
-        // ▪ estado: é obrigatório. Usar a classe StringUtil implementada.
-        // ▪ pais: é obrigatório. Usar a classe StringUtil implementada.
+    public String alterar(Cliente cliente) {
+    	String msgErro = validar(cliente); 
+        if (msgErro == null){
+            boolean res = repositorioCliente.alterar(cliente);
+            if (!res) {
+            	msgErro = "Erro ao alterar cliente no reposit�rio";
+            }
+        }
+        return msgErro;
     }
+	
+	private String validar(Cliente cliente) {
+	    if(ValidadorCPF.ehCpfValido(cliente.getCpf()) == false){
+	        return "CPF Inv�lido";
+	    }
+
+	    else if (StringUtil.ehNuloOuBranco(cliente.getNomeCompleto())){
+	        return "Nome Inv�lido";
+	    }
+
+	    else if (cliente.getSexo() == null) {
+	        return "Sexo Inv�lido";
+	    }
+
+	    else if (cliente.obterIdade() < 18) {
+	        return "A idade deve ser maior ou igual a 18.";
+	    }
+
+	    else if (cliente.getRenda() < 0) {
+	        return "Renda Inv�lida";
+	    }
+
+	    else if (cliente.getEndereco() == null) {
+	        return "Endere�o Inv�lido";
+	    }
+
+	    else if (StringUtil.ehNuloOuBranco(cliente.getEndereco().getLogradouro()) || cliente.getEndereco().getLogradouro().length() < 4) {
+	        return "Logradouro Inv�lido"; 
+	    }
+
+	    else if (cliente.getEndereco().getNumero() < 0) {
+	        return "Numero de endere�o inv�lido";
+	    }
+
+	    else if (StringUtil.ehNuloOuBranco(cliente.getEndereco().getCidade())){
+	        return "Cidade Inv�lida"; 
+	    }
+	    
+	    else if (StringUtil.ehNuloOuBranco(cliente.getEndereco().getEstado())) {
+	        return "Estado Inv�lida"; 
+	    }
+
+	    else if (StringUtil.ehNuloOuBranco(cliente.getEndereco().getPais())) {
+	        return "Pais Inv�lido"; 
+	    }
+	    return null;
+    }
+
+	public Cliente buscarCliente(String cpf) {
+	    Cliente cliente = repositorioCliente.buscar(cpf);
+	    return cliente;
+	}
+	
 }

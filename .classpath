@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="src" path="src/br/gov/cesarschool/fidelidade/cliente/entidade"/>
-	<classpathentry kind="src" path="src/br/gov/cesarschool/fidelidade/cartao/entidade"/>
-	<classpathentry kind="src" path="src/br/gov/cesarschool/fidelidade/geral/entidade"/>
-	<classpathentry kind="src" path="src/br/gov/cesarschool/fidelidade/cliente/negocio"/>
-	<classpathentry kind="src" path="src/br/gov/cesarschool/fidelidade/cartao/negocio"/>
-	<classpathentry kind="src" path="src/br/gov/cesarschool/fidelidade/cliente/DAO"/>
-	<classpathentry kind="src" path="src/br/gov/cesarschool/fidelidade/cartao/dao"/>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-17">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry combineaccessrules="false" kind="src" path="/SWT"/>
+	<classpathentry kind="lib" path="C:/Users/davi_/Downloads/swt-3.1.2-win32-win32-x86/swt.jar"/>
+	<classpathentry kind="lib" path="C:/Users/davi_/Downloads/org.eclipse.ui.forms-3.5.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -1,36 +1,35 @@
-import java.util.Date;
+package br.gov.cesarschool.fidelidade.cartao.entidade;
 
-public class CartaoFidelidade {
+import java.io.Serializable;
+import java.util.*;
 
-    private long numero;
-    private double saldo;
-    private Date dataHoraAtualizacao;
-
-	public cartaoFidelidade(long numero) {
-        this.numero = numero;
-		this.dataHoraAtualizacao = new Date();
-    }
-
-	public void creditar(double valor) {
-        this.saldo += valor;
-        this.dataHoraAtualizacao = new Date();
-    }
-
-    public void debitar(double valor) {
-        this.saldo -= valor;
-        this.dataHoraAtualizacao = new Date();
-    }
-
-	public long getNumero() {
-		return numero;
+public class CartaoFidelidade implements Serializable {
+	
+	private long numero;
+	private double saldo;
+	private Date dataHoraAtualizacao = new java.util.Date(); 
+	
+	public CartaoFidelidade(long numero) {
+		this.numero = numero;
 	}
-
+	public long getNumeroFidelidade() {
+    	return numero;
+    }
 	public double getSaldo() {
 		return saldo;
 	}
-
 	public Date getDataHoraAtualizacao() {
 		return dataHoraAtualizacao;
 	}
-    
+	
+	public void creditar(double valor) {
+		saldo = saldo + valor;
+		dataHoraAtualizacao = new Date();
+	}
+	
+	public void debitar(double valor) {	
+		saldo = saldo - valor;
+		dataHoraAtualizacao = new Date();
+	}
+	
 }

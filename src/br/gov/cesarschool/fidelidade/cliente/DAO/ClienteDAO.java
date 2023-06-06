@@ -1,24 +1,30 @@
+package br.gov.cesarschool.fidelidade.cliente.DAO;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import br.gov.cesarschool.fidelidade.cliente.entidade.Cliente;
+import br.gov.cesarschool.fidelidade.geral.dao.GenericDAO;
 
-public class ClienteDAO{ 
+public class ClienteDAO extends GenericDAO {
 	private static final String FILE_SEP = System.getProperty("file.separator");
-	private static final String DIR_BASE = "." + FILE_SEP + "fidelidade" + FILE_SEP 
-			+ "cliente" + FILE_SEP; 
+	private static final String DIR_BASE = "." + FILE_SEP + "fidelidade" + FILE_SEP + "cliente" + FILE_SEP;
 	private static final String EXT = ".dat";
+
 	public ClienteDAO() {
 		File diretorio = new File(DIR_BASE);
 		if (!diretorio.exists()) {
 			diretorio.mkdir();
 		}
 	}
+
 	private File getArquivo(String cpf) {
 		String nomeArq = DIR_BASE + cpf + EXT;
-		return new File(nomeArq);		
+		return new File(nomeArq);
 	}
+
 	private void incluirAux(Cliente cliente, File arq) {
 		FileOutputStream fos = null;
 		ObjectOutputStream oos = null;
@@ -27,55 +33,62 @@ public class ClienteDAO{
 			oos = new ObjectOutputStream(fos);
 			oos.writeObject(cliente);
 		} catch (Exception e) {
-			throw new RuntimeException("Erro ao incluir Cliente");
+			throw new RuntimeException("Erro ao incluir cliente");
 		} finally {
 			try {
 				oos.close();
-			} catch (Exception e) {}
+			} catch (Exception e) {
+			}
 			try {
 				fos.close();
-			} catch (Exception e) {}			
-		} 		
+			} catch (Exception e) {
+			}
+		}
 	}
+
 	public boolean incluir(Cliente cliente) {
 		File arq = getArquivo(cliente.getCpf());
 		if (arq.exists()) {
-			return false; 
+			return false;
 		}
 		incluirAux(cliente, arq);
-		return true; 
+		return true;
 	}
+
 	public boolean alterar(Cliente cliente) {
 		File arq = getArquivo(cliente.getCpf());
 		if (!arq.exists()) {
-			return false; 
-		}		
+			return false;
+		}
 		if (!arq.delete()) {
 			return false;
 		}
 		incluirAux(cliente, arq);
 		return true;
 	}
+
 	public Cliente buscar(String cpf) {
 		File arq = getArquivo(cpf);
 		if (!arq.exists()) {
-			return null; 
-		}				
+			return null;
+		}
 		FileInputStream fis = null;
 		ObjectInputStream ois = null;
 		try {
 			fis = new FileInputStream(arq);
 			ois = new ObjectInputStream(fis);
-			return (Cliente)ois.readObject(); 
+			return (Cliente) ois.readObject();
 		} catch (Exception e) {
 			throw new RuntimeException("Erro ao ler cliente");
 		} finally {
 			try {
-				ois.close(); 
-			} catch (Exception e) {}
+				ois.close();
+			} catch (Exception e) {
+			}
 			try {
-				fis.close(); 
-			} catch (Exception e) {}			
+				fis.close();
+			} catch (Exception e) {
+			}
 		}
 	}
 }

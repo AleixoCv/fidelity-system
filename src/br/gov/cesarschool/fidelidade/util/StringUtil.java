@@ -1,11 +1,10 @@
-public class StringUtil{
-    //Run | Debug
+package br.gov.cesarschool.fidelidade.util;
+
+public class StringUtil {
+
     private StringUtil() {}
+
     public static boolean ehNuloOuBranco(String str){
-        if(!str || str.trim()== ""){
-            return true;
-        }else {
-            return false;
-        }
+        return str == null || str.trim().isEmpty();
     }
 }

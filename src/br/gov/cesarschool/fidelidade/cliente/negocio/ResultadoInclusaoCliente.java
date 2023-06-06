@@ -1,16 +1,17 @@
-public class ResultadoInclusaoCliente{
+package br.gov.cesarschool.fidelidade.cliente.negocio;
+
+public class ResultadoInclusaoCliente {
     private long numeroFidelidade;
     private String mensagemErroValidacao;
 
-    public static void ResultadoInclusaoCliente(long numero, String msg){
-        this.numeroFidelidade = numero;
-        this.mensagemErroValidacao = msg;
+    public ResultadoInclusaoCliente(long numeroFidelidade, String mensagemErroValidacao){
+        this.numeroFidelidade = numeroFidelidade;
+        this.mensagemErroValidacao = mensagemErroValidacao;
     }
-    public long getNumeroFidelidade(){
-        return numeroFidelidade;
-    }
-
-    public String getMensagemErroValidacao(){
-        return mensagemErroValidacao;
-    }
+	public long getNumeroFidelidade() {
+		return numeroFidelidade;
+	}
+	public String getMensagemErroValidacao() {
+		return mensagemErroValidacao;
+	}
 }

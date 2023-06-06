@@ -1,14 +1,17 @@
-public class LancamentoExtratoResgate extends LancamentoExtrato{
+package br.gov.cesarschool.fidelidade.cartao.entidade;
 
-	
-=======
-    private TipoResgate tipoResgate;
-    
-    public LancamentoExtratoResgate(long numeroCartao, int quantidadePontos, LocalDateTime dataHoraLancamento) {
-        super(numeroCartao, quantidadePontos, dataHoraLancamento);
-    }
-    public TipoResgate getTipoResgate(){
-        return tipoResgate;
-    }
->>>>>>> 7c2b4b689b6e51636f3c0393f2107d3207a26bda
+import java.io.Serializable;
+import java.time.LocalDateTime;
+
+public class LancamentoExtratoResgate extends LancamentoExtrato implements Serializable {
+	private TipoResgate tipoResgate;
+
+	public LancamentoExtratoResgate(long numeroCartao, int quantidadePontos, LocalDateTime dataHoraLancamento, TipoResgate tipoResgate) {
+	    super(numeroCartao, quantidadePontos, dataHoraLancamento);
+	    this.tipoResgate = tipoResgate;
+	}
+
+	public TipoResgate getTipoResgate() {
+	    return tipoResgate;
+	}
 }
