@@ -1,17 +1,16 @@
 package br.gov.cesarschool.fidelidade.cartao.entidade;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
+import br.gov.cesarschool.fidelidade.geral.entidade.Comparavel;
 import br.gov.cesarschool.fidelidade.geral.entidade.Identificavel;
+import lombok.ToString;
 
-
-public abstract class LancamentoExtrato extends Identificavel{
-    private static final String EXT = ".dat";
-    private static final String FILE_SEP = System.getProperty("file.separator");
-	private static final String DIR_BASE = "." + FILE_SEP + "fidelidade" + FILE_SEP + "lancamento" + FILE_SEP;
+@SuppressWarnings("serial")
+public abstract class LancamentoExtrato extends Identificavel implements Comparavel{
 	private long numeroCartao;
 	private double quantidadePontos;
+	@ToString.Exclude
 	private LocalDateTime dataHoraLancamento = LocalDateTime.now();
 	
 	public LancamentoExtrato(long numeroCartao, double quantidadePontos, LocalDateTime dataHoraLancamento) {
@@ -19,13 +18,6 @@ public abstract class LancamentoExtrato extends Identificavel{
 		this.numeroCartao = numeroCartao;
 		this.quantidadePontos = quantidadePontos;
 		this.dataHoraLancamento = dataHoraLancamento;
-	}
-	
-	public String obterChave(String tipo) {
-		String timestamp = LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME);
-		String chaveLancamento = tipo + this.getNumeroCartao() + timestamp;
-		String chave = DIR_BASE + chaveLancamento + EXT;
-		return chave;
 	}
 		
 	public long getNumeroCartao() {
@@ -38,6 +30,22 @@ public abstract class LancamentoExtrato extends Identificavel{
 	
 	public LocalDateTime getDataHoraLancamento() {
 		return dataHoraLancamento;
+	}
+	
+	public abstract String getIdentificadorTipo();
+	
+	@Override
+	public int comparar(Comparavel comparavel) {
+		LancamentoExtrato lancamentoComp = (LancamentoExtrato)comparavel;
+		
+		if(this.getDataHoraLancamento().isBefore(lancamentoComp.getDataHoraLancamento())) {
+			return 1;
+		}else if(this.getDataHoraLancamento().isAfter(lancamentoComp.getDataHoraLancamento())) {
+			return -1;
+		}else{
+			return 0;
+		}
+
 	}
 
 }

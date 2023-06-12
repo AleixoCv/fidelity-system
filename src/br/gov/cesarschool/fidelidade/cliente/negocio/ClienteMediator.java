@@ -1,9 +1,11 @@
 package br.gov.cesarschool.fidelidade.cliente.negocio;
 
+import br.gov.cesarschool.fidelidade.cartao.negocio.CartaoFidelidadeMediator;
 import br.gov.cesarschool.fidelidade.cliente.DAO.ClienteDAO;
 import br.gov.cesarschool.fidelidade.cliente.entidade.Cliente;
-import br.gov.cesarschool.fidelidade.util.*;
-import br.gov.cesarschool.fidelidade.cartao.negocio.CartaoFidelidadeMediator;
+import br.gov.cesarschool.fidelidade.util.Ordenador;
+import br.gov.cesarschool.fidelidade.util.StringUtil;
+import br.gov.cesarschool.fidelidade.util.ValidadorCPF;
 
 public class ClienteMediator {
 	
@@ -97,6 +99,13 @@ public class ClienteMediator {
 	public Cliente buscarCliente(String cpf) {
 	    Cliente cliente = repositorioCliente.buscar(cpf);
 	    return cliente;
+	}
+	
+	public Cliente[] consultarClientesOrdenadosPorNome() {
+		Cliente[] clientes = repositorioCliente.buscarTodos();
+		Ordenador.ordenar(clientes);
+		
+		return clientes;
 	}
 	
 }

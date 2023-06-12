@@ -1,16 +1,20 @@
 package br.gov.cesarschool.fidelidade.cliente.entidade;
 
-import br.gov.cesarschool.fidelidade.geral.entidade.Endereco;
-import br.gov.cesarschool.fidelidade.geral.entidade.Sexo;
-
-import java.util.Date;
-import java.io.Serializable;
 import java.util.Calendar;
+import java.util.Date;
 
-public class Cliente implements Serializable {
+import br.gov.cesarschool.fidelidade.geral.entidade.Comparavel;
+import br.gov.cesarschool.fidelidade.geral.entidade.Endereco;
+import br.gov.cesarschool.fidelidade.geral.entidade.Identificavel;
+import br.gov.cesarschool.fidelidade.geral.entidade.Sexo;
+import lombok.ToString;
+
+@SuppressWarnings("serial")
+public class Cliente extends Identificavel implements Comparavel {
 	private String cpf;
 	private	String nomeCompleto;
 	private Sexo sexo;
+	@ToString.Exclude
 	private Date dataNascimento;
 	private double renda;
 	private Endereco endereco;
@@ -67,6 +71,7 @@ public class Cliente implements Serializable {
 	    public void setEndereco(Endereco endereco) {
 	        this.endereco = endereco;
 	    }
+	    
 	    public int obterIdade() {
 	        Calendar hoje = Calendar.getInstance();
 	        Calendar dataNascimento = Calendar.getInstance();
@@ -77,4 +82,24 @@ public class Cliente implements Serializable {
 	        }
 	        return idade;
 	    }
+
+		@Override
+		public String obterChave() {
+			return (this.getCpf()+"");
+		}
+
+		@Override
+		public int comparar(Comparavel comparavel) {
+			Cliente clienteComp = (Cliente)comparavel;
+			int result = this.getNomeCompleto().compareTo(clienteComp.getNomeCompleto());
+			
+			if(result > 0) {
+				return -1;
+			}else if(result == 0) {
+				return 0;
+			}else{
+				return 1;
+			}
+	
+		}
 }

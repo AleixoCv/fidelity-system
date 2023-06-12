@@ -1,12 +1,22 @@
 package br.gov.cesarschool.fidelidade.cartao.entidade;
 
-import java.io.Serializable;
 import java.time.LocalDateTime;
 
-public class LancamentoExtratoPontuacao extends LancamentoExtrato implements Serializable {
+@SuppressWarnings("serial")
+public class LancamentoExtratoPontuacao extends LancamentoExtrato{
 
 	public LancamentoExtratoPontuacao(long numeroCartao, double quantidadePontos, LocalDateTime dataHoraLancamento) {
 		super(numeroCartao, quantidadePontos, dataHoraLancamento);
+	}
+
+	@Override
+	public String obterChave() {
+		return (this.getNumeroCartao()+"");
+	}
+
+	@Override
+	public String getIdentificadorTipo() {
+		return "P";
 	}
 	
 }

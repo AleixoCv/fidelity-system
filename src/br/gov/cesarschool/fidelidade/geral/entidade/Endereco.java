@@ -2,6 +2,7 @@ package br.gov.cesarschool.fidelidade.geral.entidade;
 
 import java.io.Serializable;
 
+@SuppressWarnings("serial")
 public class Endereco implements Serializable {
 
     private String logradouro;

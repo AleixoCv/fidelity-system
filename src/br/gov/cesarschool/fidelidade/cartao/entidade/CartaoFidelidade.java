@@ -1,12 +1,16 @@
 package br.gov.cesarschool.fidelidade.cartao.entidade;
 
-import java.io.Serializable;
-import java.util.*;
+import java.util.Date;
 
-public class CartaoFidelidade implements Serializable {
+import br.gov.cesarschool.fidelidade.geral.entidade.Identificavel;
+import lombok.ToString;
+
+@SuppressWarnings("serial")
+public class CartaoFidelidade extends Identificavel {
 	
 	private long numero;
 	private double saldo;
+	@ToString.Exclude
 	private Date dataHoraAtualizacao = new java.util.Date(); 
 	
 	public CartaoFidelidade(long numero) {
@@ -31,5 +35,10 @@ public class CartaoFidelidade implements Serializable {
 		saldo = saldo - valor;
 		dataHoraAtualizacao = new Date();
 	}
+	
+	@Override
+	public String obterChave() {
+        return (this.getNumeroFidelidade()+"");
+    }
 	
 }
