@@ -16,7 +16,7 @@ import br.gov.cesarschool.fidelidade.cartao.entidade.LancamentoExtratoResgate;
 import br.gov.cesarschool.fidelidade.cartao.entidade.RetornoConsultaExtrato;
 import br.gov.cesarschool.fidelidade.cartao.entidade.TipoResgate;
 import br.gov.cesarschool.fidelidade.cliente.entidade.Cliente;
-import br.gov.cesarschool.fidelidade.util.ExcecaoDadoInvalido;
+import br.gov.cesarschool.fidelidade.excecoes.ExcecaoDadoInvalido;
 import br.gov.cesarschool.fidelidade.util.Ordenador;
 import br.gov.cesarschool.fidelidade.util.StringUtil;
 import br.gov.cesarschool.fidelidade.util.ValidadorCPF;

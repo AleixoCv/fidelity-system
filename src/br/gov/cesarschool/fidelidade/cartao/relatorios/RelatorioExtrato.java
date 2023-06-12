@@ -9,7 +9,7 @@ import java.util.Scanner;
 import br.gov.cesarschool.fidelidade.cartao.entidade.LancamentoExtrato;
 import br.gov.cesarschool.fidelidade.cartao.entidade.RetornoConsultaExtrato;
 import br.gov.cesarschool.fidelidade.cartao.negocio.CartaoFidelidadeMediator;
-import br.gov.cesarschool.fidelidade.util.ExcecaoDadoInvalido;
+import br.gov.cesarschool.fidelidade.excecoes.ExcecaoDadoInvalido;
 
 public class RelatorioExtrato {
 	private CartaoFidelidadeMediator cartaoFidelidadeMediator;
